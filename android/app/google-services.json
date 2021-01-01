@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "37773433304",
+    "project_id": "dscproject-2dc3b",
+    "storage_bucket": "dscproject-2dc3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37773433304:android:c5016fea45c50b6d1e3aad",
+        "android_client_info": {
+          "package_name": "com.rishav.dsc_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37773433304-7r5sqs45eduuaoiljhfgoeg2mc17ps20.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rishav.dsc_project",
+            "certificate_hash": "2b4791605537ed33fe485f958f97612ffe7ce4c8"
+          }
+        },
+        {
+          "client_id": "37773433304-ngiqgj1is7joklnesqeel80t0ma98s4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBctQ3kahqKArMQDggpkweqpM8BcNlL2u4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37773433304-ngiqgj1is7joklnesqeel80t0ma98s4g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
