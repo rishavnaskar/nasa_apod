@@ -99,8 +99,8 @@ class _MainWidgetState extends State<MainWidget> {
   File imageFile;
   var image;
   String fileName;
-  EdgeInsetsGeometry _buttonPadding = EdgeInsets.symmetric(
-      vertical: 15, horizontal: 50);
+  EdgeInsetsGeometry _buttonPadding = EdgeInsets.all(15);
+  ShapeBorder _shapeBorder = CircleBorder(side: BorderSide(width: 2, color: Colors.grey));
 
   @override
   Widget build(BuildContext context) {
@@ -193,14 +193,12 @@ class _MainWidgetState extends State<MainWidget> {
                                                       hdUrl: hdUrl))),
                                   padding: _buttonPadding,
                                   child: Icon(Icons.info),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20)),
+                                  shape: _shapeBorder,
                                 ),
                                 SizedBox(width: 30),
                                 RaisedButton(
                                   onPressed: () => urlToImageFile(thumbUrl, context),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20)),
+                                  shape: _shapeBorder,
                                   padding: _buttonPadding,
                                   child: Icon(Icons.edit),
                                 )

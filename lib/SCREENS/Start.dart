@@ -22,8 +22,7 @@ class _StartState extends State<Start> {
           children: [
             Container(
               decoration: BoxDecoration(
-                  image:
-                      DecorationImage(image: AssetImage('assets/wallpaper.jpg'))),
+                  image: DecorationImage(image: AssetImage('assets/wallpaper.jpg'), fit: BoxFit.cover)),
             ),
             Container(
               height: MediaQuery.of(context).size.height,
@@ -72,7 +71,7 @@ class Name extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text('NASA',
+          Text('DSC',
               textAlign: TextAlign.right,
               style: TextStyle(
                   color: Colors.white,
