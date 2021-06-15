@@ -102,14 +102,16 @@ class _DetailsState extends State<Details> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                     Text(widget.explanation,
                         textAlign: TextAlign.justify,
-                        style:
-                        Components().kTextStyle.copyWith(fontStyle: FontStyle.normal)),
+                        style: Components()
+                            .kTextStyle
+                            .copyWith(fontStyle: FontStyle.normal)),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                     Center(
                       child: Text('© ${widget.copyRight}',
                           textAlign: TextAlign.center,
-                          style:
-                          Components().kTextStyle.copyWith(fontStyle: FontStyle.normal)),
+                          style: Components()
+                              .kTextStyle
+                              .copyWith(fontStyle: FontStyle.normal)),
                     ),
                   ],
                 ),

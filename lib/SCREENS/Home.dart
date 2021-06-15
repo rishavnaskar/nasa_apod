@@ -32,10 +32,7 @@ class _HomeState extends State<Home> {
               icon: Icon(Icons.exit_to_app),
               color: Colors.white,
               onPressed: () => GoogleLogin().googleLogoutUser(context))),
-      SizedBox(height: MediaQuery
-          .of(context)
-          .size
-          .height * 0.05),
+      SizedBox(height: MediaQuery.of(context).size.height * 0.05),
       Title(),
       MainWidget(tagNumber: ++tagNumber),
     });
@@ -56,10 +53,7 @@ class _HomeState extends State<Home> {
                   child: ListView(
                       controller: _scrollController, children: mainWidgets),
                 ),
-                SizedBox(height: MediaQuery
-                    .of(context)
-                    .size
-                    .height * 0.05)
+                SizedBox(height: MediaQuery.of(context).size.height * 0.05)
               ],
             ),
           ),
@@ -100,115 +94,97 @@ class _MainWidgetState extends State<MainWidget> {
   var image;
   String fileName;
   EdgeInsetsGeometry _buttonPadding = EdgeInsets.all(15);
-  ShapeBorder _shapeBorder = CircleBorder(side: BorderSide(width: 2, color: Colors.grey));
+  ShapeBorder _shapeBorder =
+      CircleBorder(side: BorderSide(width: 2, color: Colors.grey));
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: MediaQuery
-            .of(context)
-            .size
-            .height * 0.1),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.1),
         Stack(
           children: [
             Center(
                 child: Column(
-                  children: [
-                    SizedBox(height: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 0.15),
-                    Container(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width * 0.8,
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height * 0.65,
-                        decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.4),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.transparent.withOpacity(0.2),
-                                  spreadRadius: 5,
-                                  blurRadius: 5,
-                                  offset: Offset(10, 10))
-                            ],
-                            borderRadius: BorderRadius.circular(30)),
-                        padding: EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+                Container(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    height: MediaQuery.of(context).size.height * 0.65,
+                    decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.4),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.transparent.withOpacity(0.2),
+                              spreadRadius: 5,
+                              blurRadius: 5,
+                              offset: Offset(10, 10))
+                        ],
+                        borderRadius: BorderRadius.circular(30)),
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.2),
+                        FutureBuilder(
+                            future: Api().getApi(),
+                            builder: (context, snapshot) {
+                              if (!snapshot.hasData) return Container();
+
+                              var result = snapshot.data;
+                              title = result['title'];
+                              copyRight = result['copyright'];
+                              explanation = result['explanation'];
+                              hdUrl = result['hdurl'];
+                              date = result['date'].toString();
+
+                              return Text(title,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Montserrat',
+                                      letterSpacing: 2,
+                                      fontSize: 20));
+                            }),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.06),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(
-                                height: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .height * 0.2),
-                            FutureBuilder(
-                                future: Api().getApi(),
-                                builder: (context, snapshot) {
-                                  if (!snapshot.hasData) return Container();
-
-                                  var result = snapshot.data;
-                                  title = result['title'];
-                                  copyRight = result['copyright'];
-                                  explanation = result['explanation'];
-                                  hdUrl = result['hdurl'];
-                                  date = result['date'].toString();
-
-                                  return Text(title,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'Montserrat',
-                                          letterSpacing: 2,
-                                          fontSize: 20));
-                                }),
-                            SizedBox(
-                                height: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .height * 0.06),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                RaisedButton(
-                                  onPressed: () =>
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                              pageBuilder: (_, __, ___) =>
-                                                  Details(
-                                                      title: title,
-                                                      copyRight: copyRight,
-                                                      date: date,
-                                                      explanation: explanation,
-                                                      tagNumber: widget
-                                                          .tagNumber,
-                                                      hdUrl: hdUrl))),
-                                  padding: _buttonPadding,
-                                  child: Icon(Icons.info),
-                                  shape: _shapeBorder,
-                                ),
-                                SizedBox(width: 30),
-                                RaisedButton(
-                                  onPressed: () => urlToImageFile(thumbUrl, context),
-                                  shape: _shapeBorder,
-                                  padding: _buttonPadding,
-                                  child: Icon(Icons.edit),
-                                )
-                              ],
+                            // ignore: deprecated_member_use
+                            RaisedButton(
+                              onPressed: () => Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                      pageBuilder: (_, __, ___) => Details(
+                                          title: title,
+                                          copyRight: copyRight,
+                                          date: date,
+                                          explanation: explanation,
+                                          tagNumber: widget.tagNumber,
+                                          hdUrl: hdUrl))),
+                              padding: _buttonPadding,
+                              child: Icon(Icons.info),
+                              shape: _shapeBorder,
                             ),
-                            SizedBox(height: 20),
+                            SizedBox(width: 30),
+                            // ignore: deprecated_member_use
+                            RaisedButton(
+                              onPressed: () =>
+                                  urlToImageFile(thumbUrl, context),
+                              shape: _shapeBorder,
+                              padding: _buttonPadding,
+                              child: Icon(Icons.edit),
+                            )
                           ],
-                        )),
-                  ],
-                )),
+                        ),
+                        SizedBox(height: 20),
+                      ],
+                    )),
+              ],
+            )),
             FutureBuilder(
                 future: Api().getApi(),
                 builder: (context, snapshot) {
@@ -217,60 +193,50 @@ class _MainWidgetState extends State<MainWidget> {
 
                   var result = snapshot.data;
                   thumbUrl = result['url'];
-
                   return Align(
                     alignment: Alignment.topCenter,
                     child: Hero(
                       tag: '${widget.tagNumber}',
                       child: imageFile == null
                           ? CachedNetworkImage(
-                        imageUrl: thumbUrl,
-                        errorWidget: (context, url, error) =>
-                            Text(error),
-                        fadeInCurve: Curves.fastOutSlowIn,
-                        fadeInDuration: Duration(milliseconds: 1000),
-                        imageBuilder: (context, image) =>
-                            Container(
-                              height:
-                              MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height * 0.5,
-                              width:
-                              MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.6,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    fit: BoxFit.fill, image: image),
+                              imageUrl: thumbUrl,
+                              progressIndicatorBuilder:
+                                  (context, name, progress) =>
+                                      CircularProgressIndicator(
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(Colors.white),
+                                value: progress.progress,
                               ),
-                            ),
-                      )
-                          : Image.file(imageFile, fit: BoxFit.cover,
-                          frameBuilder: (context, image, __, ___) {
-                            return Container(
-                              height:
-                              MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height * 0.5,
-                              width:
-                              MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.6,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: Colors.white,
-                              ),
-                              child: ClipRRect(
+                              errorWidget: (context, url, error) => Text(error),
+                              fadeInCurve: Curves.fastOutSlowIn,
+                              fadeInDuration: Duration(milliseconds: 1000),
+                              imageBuilder: (context, image) => Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.5,
+                                width: MediaQuery.of(context).size.width * 0.6,
+                                decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
-                                  child: image),
-                            );
-                          }),
+                                  color: Colors.white,
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill, image: image),
+                                ),
+                              ),
+                            )
+                          : Image.file(imageFile, fit: BoxFit.cover,
+                              frameBuilder: (context, image, __, ___) {
+                              return Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.5,
+                                width: MediaQuery.of(context).size.width * 0.6,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Colors.white,
+                                ),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(30),
+                                    child: image),
+                              );
+                            }),
                     ),
                   );
                 }),
@@ -290,7 +256,7 @@ class _MainWidgetState extends State<MainWidget> {
     Directory tempDir = await getApplicationDocumentsDirectory();
     String tempPath = tempDir.path;
     imageFile = File('$tempPath' + '.png');
-    http.Response response = await http.get(url);
+    http.Response response = await http.get(Uri.parse(url));
     await imageFile.writeAsBytes(response.bodyBytes);
     setState(() {
       fileName = basename(imageFile.path);
@@ -300,12 +266,11 @@ class _MainWidgetState extends State<MainWidget> {
     Map tempImageFile = await Navigator.push(
         context,
         CupertinoPageRoute(
-            builder: (context) =>
-                PhotoFilterSelector(
-                    title: Text('SPACE EDIT'),
-                    filters: presetFiltersList,
-                    image: image,
-                    filename: fileName)));
+            builder: (context) => PhotoFilterSelector(
+                title: Text('SPACE EDIT'),
+                filters: presetFiltersList,
+                image: image,
+                filename: fileName)));
     if (tempImageFile != null && tempImageFile.containsKey('image_filtered'))
       setState(() {
         imageFile = tempImageFile['image_filtered'];

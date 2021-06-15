@@ -4,8 +4,8 @@ import 'package:http/http.dart' as http;
 
 class Api {
   getApi() async {
-    String apiKey = DotEnv().env['apikey'];
-    var url = 'https://api.nasa.gov/planetary/apod?api_key=$apiKey';
+    String apiKey = dotenv.env['apikey'];
+    Uri url = Uri.parse('https://api.nasa.gov/planetary/apod?api_key=$apiKey');
     http.Response response = await http.get(url);
 
     if (response.statusCode == 200) {

@@ -13,7 +13,7 @@ class GoogleLogin {
       final GoogleSignInAuthentication googleAuth =
           await googleSignInAccount.authentication;
       // ignore: deprecated_member_use
-      final AuthCredential credential = GoogleAuthProvider.getCredential(
+      final AuthCredential credential = GoogleAuthProvider.credential(
           idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
       await _firebaseAuth.signInWithCredential(credential);
     } catch (error) {

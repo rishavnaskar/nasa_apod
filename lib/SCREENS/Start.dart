@@ -2,7 +2,7 @@ import 'package:dsc_project/FUNCTIONS/GoogleLogin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class Start extends StatefulWidget {
   @override
@@ -22,7 +22,9 @@ class _StartState extends State<Start> {
           children: [
             Container(
               decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage('assets/wallpaper.jpg'), fit: BoxFit.cover)),
+                  image: DecorationImage(
+                      image: AssetImage('assets/wallpaper.jpg'),
+                      fit: BoxFit.cover)),
             ),
             Container(
               height: MediaQuery.of(context).size.height,
@@ -56,11 +58,6 @@ class _StartState extends State<Start> {
     );
   }
 }
-
-// child: RaisedButton(
-//   onPressed: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => Home())),
-//   child: Text('Next'),
-// ),
 
 class Name extends StatelessWidget {
   @override
